@@ -1,14 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
-    <ProjectConfiguration Include="Debug|Win32">
-      <Configuration>Debug</Configuration>
-      <Platform>Win32</Platform>
-    </ProjectConfiguration>
-    <ProjectConfiguration Include="Release|Win32">
-      <Configuration>Release</Configuration>
-      <Platform>Win32</Platform>
-    </ProjectConfiguration>
     <ProjectConfiguration Include="Debug|x64">
       <Configuration>Debug</Configuration>
       <Platform>x64</Platform>
@@ -29,19 +21,6 @@
   <PropertyGroup>
     <PreferredToolArchitecture>x64</PreferredToolArchitecture>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
-    <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v143</PlatformToolset>
-    <CharacterSet>Unicode</CharacterSet>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
-    <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v143</PlatformToolset>
-    <WholeProgramOptimization>true</WholeProgramOptimization>
-    <CharacterSet>Unicode</CharacterSet>
-  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
@@ -60,12 +39,6 @@
   </ImportGroup>
   <ImportGroup Label="Shared">
   </ImportGroup>
-  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-  </ImportGroup>
-  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-  </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
@@ -73,65 +46,29 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <LinkIncremental>true</LinkIncremental>
-  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <LinkIncremental>false</LinkIncremental>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
   </PropertyGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <ClCompile>
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
-      <WarningLevel>Level3</WarningLevel>
-      <Optimization>Disabled</Optimization>
-      <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <ConformanceMode>true</ConformanceMode>
-      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-    </ClCompile>
-    <Link>
-      <SubSystem>Console</SubSystem>
-      <GenerateDebugInformation>true</GenerateDebugInformation>
-    </Link>
-  </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>SFML_STATIC;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <AdditionalIncludeDirectories>$(ProjectDir)libs\include</AdditionalIncludeDirectories>
+      <AdditionalModuleDependencies>$(ProjectDir)libs\lib</AdditionalModuleDependencies>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-    </Link>
-  </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <ClCompile>
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
-      <WarningLevel>Level3</WarningLevel>
-      <Optimization>MaxSpeed</Optimization>
-      <FunctionLevelLinking>true</FunctionLevelLinking>
-      <IntrinsicFunctions>true</IntrinsicFunctions>
-      <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <ConformanceMode>true</ConformanceMode>
-      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-    </ClCompile>
-    <Link>
-      <SubSystem>Console</SubSystem>
-      <EnableCOMDATFolding>true</EnableCOMDATFolding>
-      <OptimizeReferences>true</OptimizeReferences>
-      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>$(CoreLibraryDependencies);%(AdditionalDependencies); sfml-graphics-s-d.lib; sfml-window-s-d.lib; sfml-system-s-d.lib; opengl32.lib; winmm.lib; gdi32.lib; freetype.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(ProjectDir)libs\lib</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -155,6 +92,166 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Tanks_2D.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="libs\include\SFML\Audio.hpp" />
+    <ClInclude Include="libs\include\SFML\Audio\AlResource.hpp" />
+    <ClInclude Include="libs\include\SFML\Audio\Export.hpp" />
+    <ClInclude Include="libs\include\SFML\Audio\InputSoundFile.hpp" />
+    <ClInclude Include="libs\include\SFML\Audio\Listener.hpp" />
+    <ClInclude Include="libs\include\SFML\Audio\Music.hpp" />
+    <ClInclude Include="libs\include\SFML\Audio\OutputSoundFile.hpp" />
+    <ClInclude Include="libs\include\SFML\Audio\Sound.hpp" />
+    <ClInclude Include="libs\include\SFML\Audio\SoundBuffer.hpp" />
+    <ClInclude Include="libs\include\SFML\Audio\SoundBufferRecorder.hpp" />
+    <ClInclude Include="libs\include\SFML\Audio\SoundFileFactory.hpp" />
+    <ClInclude Include="libs\include\SFML\Audio\SoundFileFactory.inl" />
+    <ClInclude Include="libs\include\SFML\Audio\SoundFileReader.hpp" />
+    <ClInclude Include="libs\include\SFML\Audio\SoundFileWriter.hpp" />
+    <ClInclude Include="libs\include\SFML\Audio\SoundRecorder.hpp" />
+    <ClInclude Include="libs\include\SFML\Audio\SoundSource.hpp" />
+    <ClInclude Include="libs\include\SFML\Audio\SoundStream.hpp" />
+    <ClInclude Include="libs\include\SFML\Config.hpp" />
+    <ClInclude Include="libs\include\SFML\GpuPreference.hpp" />
+    <ClInclude Include="libs\include\SFML\Graphics.hpp" />
+    <ClInclude Include="libs\include\SFML\Graphics\BlendMode.hpp" />
+    <ClInclude Include="libs\include\SFML\Graphics\CircleShape.hpp" />
+    <ClInclude Include="libs\include\SFML\Graphics\Color.hpp" />
+    <ClInclude Include="libs\include\SFML\Graphics\ConvexShape.hpp" />
+    <ClInclude Include="libs\include\SFML\Graphics\Drawable.hpp" />
+    <ClInclude Include="libs\include\SFML\Graphics\Export.hpp" />
+    <ClInclude Include="libs\include\SFML\Graphics\Font.hpp" />
+    <ClInclude Include="libs\include\SFML\Graphics\Glsl.hpp" />
+    <ClInclude Include="libs\include\SFML\Graphics\Glsl.inl" />
+    <ClInclude Include="libs\include\SFML\Graphics\Glyph.hpp" />
+    <ClInclude Include="libs\include\SFML\Graphics\Image.hpp" />
+    <ClInclude Include="libs\include\SFML\Graphics\PrimitiveType.hpp" />
+    <ClInclude Include="libs\include\SFML\Graphics\Rect.hpp" />
+    <ClInclude Include="libs\include\SFML\Graphics\Rect.inl" />
+    <ClInclude Include="libs\include\SFML\Graphics\RectangleShape.hpp" />
+    <ClInclude Include="libs\include\SFML\Graphics\RenderStates.hpp" />
+    <ClInclude Include="libs\include\SFML\Graphics\RenderTarget.hpp" />
+    <ClInclude Include="libs\include\SFML\Graphics\RenderTexture.hpp" />
+    <ClInclude Include="libs\include\SFML\Graphics\RenderWindow.hpp" />
+    <ClInclude Include="libs\include\SFML\Graphics\Shader.hpp" />
+    <ClInclude Include="libs\include\SFML\Graphics\Shape.hpp" />
+    <ClInclude Include="libs\include\SFML\Graphics\Sprite.hpp" />
+    <ClInclude Include="libs\include\SFML\Graphics\Text.hpp" />
+    <ClInclude Include="libs\include\SFML\Graphics\Texture.hpp" />
+    <ClInclude Include="libs\include\SFML\Graphics\Transform.hpp" />
+    <ClInclude Include="libs\include\SFML\Graphics\Transformable.hpp" />
+    <ClInclude Include="libs\include\SFML\Graphics\Vertex.hpp" />
+    <ClInclude Include="libs\include\SFML\Graphics\VertexArray.hpp" />
+    <ClInclude Include="libs\include\SFML\Graphics\VertexBuffer.hpp" />
+    <ClInclude Include="libs\include\SFML\Graphics\View.hpp" />
+    <ClInclude Include="libs\include\SFML\Main.hpp" />
+    <ClInclude Include="libs\include\SFML\Network.hpp" />
+    <ClInclude Include="libs\include\SFML\Network\Export.hpp" />
+    <ClInclude Include="libs\include\SFML\Network\Ftp.hpp" />
+    <ClInclude Include="libs\include\SFML\Network\Http.hpp" />
+    <ClInclude Include="libs\include\SFML\Network\IpAddress.hpp" />
+    <ClInclude Include="libs\include\SFML\Network\Packet.hpp" />
+    <ClInclude Include="libs\include\SFML\Network\Socket.hpp" />
+    <ClInclude Include="libs\include\SFML\Network\SocketHandle.hpp" />
+    <ClInclude Include="libs\include\SFML\Network\SocketSelector.hpp" />
+    <ClInclude Include="libs\include\SFML\Network\TcpListener.hpp" />
+    <ClInclude Include="libs\include\SFML\Network\TcpSocket.hpp" />
+    <ClInclude Include="libs\include\SFML\Network\UdpSocket.hpp" />
+    <ClInclude Include="libs\include\SFML\OpenGL.hpp" />
+    <ClInclude Include="libs\include\SFML\System.hpp" />
+    <ClInclude Include="libs\include\SFML\System\Clock.hpp" />
+    <ClInclude Include="libs\include\SFML\System\Err.hpp" />
+    <ClInclude Include="libs\include\SFML\System\Export.hpp" />
+    <ClInclude Include="libs\include\SFML\System\FileInputStream.hpp" />
+    <ClInclude Include="libs\include\SFML\System\InputStream.hpp" />
+    <ClInclude Include="libs\include\SFML\System\Lock.hpp" />
+    <ClInclude Include="libs\include\SFML\System\MemoryInputStream.hpp" />
+    <ClInclude Include="libs\include\SFML\System\Mutex.hpp" />
+    <ClInclude Include="libs\include\SFML\System\NativeActivity.hpp" />
+    <ClInclude Include="libs\include\SFML\System\NonCopyable.hpp" />
+    <ClInclude Include="libs\include\SFML\System\Sleep.hpp" />
+    <ClInclude Include="libs\include\SFML\System\String.hpp" />
+    <ClInclude Include="libs\include\SFML\System\String.inl" />
+    <ClInclude Include="libs\include\SFML\System\Thread.hpp" />
+    <ClInclude Include="libs\include\SFML\System\Thread.inl" />
+    <ClInclude Include="libs\include\SFML\System\ThreadLocal.hpp" />
+    <ClInclude Include="libs\include\SFML\System\ThreadLocalPtr.hpp" />
+    <ClInclude Include="libs\include\SFML\System\ThreadLocalPtr.inl" />
+    <ClInclude Include="libs\include\SFML\System\Time.hpp" />
+    <ClInclude Include="libs\include\SFML\System\Utf.hpp" />
+    <ClInclude Include="libs\include\SFML\System\Utf.inl" />
+    <ClInclude Include="libs\include\SFML\System\Vector2.hpp" />
+    <ClInclude Include="libs\include\SFML\System\Vector2.inl" />
+    <ClInclude Include="libs\include\SFML\System\Vector3.hpp" />
+    <ClInclude Include="libs\include\SFML\System\Vector3.inl" />
+    <ClInclude Include="libs\include\SFML\Window.hpp" />
+    <ClInclude Include="libs\include\SFML\Window\Clipboard.hpp" />
+    <ClInclude Include="libs\include\SFML\Window\Context.hpp" />
+    <ClInclude Include="libs\include\SFML\Window\ContextSettings.hpp" />
+    <ClInclude Include="libs\include\SFML\Window\Cursor.hpp" />
+    <ClInclude Include="libs\include\SFML\Window\Event.hpp" />
+    <ClInclude Include="libs\include\SFML\Window\Export.hpp" />
+    <ClInclude Include="libs\include\SFML\Window\GlResource.hpp" />
+    <ClInclude Include="libs\include\SFML\Window\Joystick.hpp" />
+    <ClInclude Include="libs\include\SFML\Window\Keyboard.hpp" />
+    <ClInclude Include="libs\include\SFML\Window\Mouse.hpp" />
+    <ClInclude Include="libs\include\SFML\Window\Sensor.hpp" />
+    <ClInclude Include="libs\include\SFML\Window\Touch.hpp" />
+    <ClInclude Include="libs\include\SFML\Window\VideoMode.hpp" />
+    <ClInclude Include="libs\include\SFML\Window\Window.hpp" />
+    <ClInclude Include="libs\include\SFML\Window\WindowHandle.hpp" />
+    <ClInclude Include="libs\include\SFML\Window\WindowStyle.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="libs\lib\cmake\SFML\SFMLConfig.cmake" />
+    <Content Include="libs\lib\cmake\SFML\SFMLConfigDependencies.cmake" />
+    <Content Include="libs\lib\cmake\SFML\SFMLConfigVersion.cmake" />
+    <Content Include="libs\lib\cmake\SFML\SFMLSharedTargets-debug.cmake" />
+    <Content Include="libs\lib\cmake\SFML\SFMLSharedTargets-release.cmake" />
+    <Content Include="libs\lib\cmake\SFML\SFMLSharedTargets.cmake" />
+    <Content Include="libs\lib\cmake\SFML\SFMLStaticTargets-debug.cmake" />
+    <Content Include="libs\lib\cmake\SFML\SFMLStaticTargets-release.cmake" />
+    <Content Include="libs\lib\cmake\SFML\SFMLStaticTargets.cmake" />
+    <Content Include="libs\lib\flac.lib" />
+    <Content Include="libs\lib\freetype.lib" />
+    <Content Include="libs\lib\ogg.lib" />
+    <Content Include="libs\lib\openal32.lib" />
+    <Content Include="libs\lib\sfml-audio-d.lib" />
+    <Content Include="libs\lib\sfml-audio-d.pdb" />
+    <Content Include="libs\lib\sfml-audio-s-d.lib" />
+    <Content Include="libs\lib\sfml-audio-s-d.pdb" />
+    <Content Include="libs\lib\sfml-audio-s.lib" />
+    <Content Include="libs\lib\sfml-audio.lib" />
+    <Content Include="libs\lib\sfml-graphics-d.lib" />
+    <Content Include="libs\lib\sfml-graphics-d.pdb" />
+    <Content Include="libs\lib\sfml-graphics-s-d.lib" />
+    <Content Include="libs\lib\sfml-graphics-s-d.pdb" />
+    <Content Include="libs\lib\sfml-graphics-s.lib" />
+    <Content Include="libs\lib\sfml-graphics.lib" />
+    <Content Include="libs\lib\sfml-main-d.lib" />
+    <Content Include="libs\lib\sfml-main-s-d.pdb" />
+    <Content Include="libs\lib\sfml-main.lib" />
+    <Content Include="libs\lib\sfml-network-d.lib" />
+    <Content Include="libs\lib\sfml-network-d.pdb" />
+    <Content Include="libs\lib\sfml-network-s-d.lib" />
+    <Content Include="libs\lib\sfml-network-s-d.pdb" />
+    <Content Include="libs\lib\sfml-network-s.lib" />
+    <Content Include="libs\lib\sfml-network.lib" />
+    <Content Include="libs\lib\sfml-system-d.lib" />
+    <Content Include="libs\lib\sfml-system-d.pdb" />
+    <Content Include="libs\lib\sfml-system-s-d.lib" />
+    <Content Include="libs\lib\sfml-system-s-d.pdb" />
+    <Content Include="libs\lib\sfml-system-s.lib" />
+    <Content Include="libs\lib\sfml-system.lib" />
+    <Content Include="libs\lib\sfml-window-d.lib" />
+    <Content Include="libs\lib\sfml-window-d.pdb" />
+    <Content Include="libs\lib\sfml-window-s-d.lib" />
+    <Content Include="libs\lib\sfml-window-s-d.pdb" />
+    <Content Include="libs\lib\sfml-window-s.lib" />
+    <Content Include="libs\lib\sfml-window.lib" />
+    <Content Include="libs\lib\vorbis.lib" />
+    <Content Include="libs\lib\vorbisenc.lib" />
+    <Content Include="libs\lib\vorbisfile.lib" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
