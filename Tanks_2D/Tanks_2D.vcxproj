@@ -287,6 +287,7 @@
     <ClInclude Include="Source\Game.h" />
     <ClInclude Include="Source\GameField.h" />
     <ClInclude Include="Source\GameObject.h" />
+    <ClInclude Include="Source\MovementDefines.h" />
     <ClInclude Include="Source\Player.h" />
     <ClInclude Include="Source\Tank.h" />
   </ItemGroup>

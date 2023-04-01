@@ -1,5 +1,6 @@
 ﻿#pragma once
 #include "GameObject.h"
+#include "MovementDefines.h"
 #include "SFML/Audio/AlResource.hpp"
 #include "SFML/Graphics/Sprite.hpp"
 
@@ -11,18 +12,18 @@ public:
     Tank(int x, int y);
 
     void move();
-    void turn(int new_direction);
+    void setMoveDirection(MoveDirection direction);
     void shoot();
 
     // start game object interface
     void initialize() override;
 
-    void update(float delta_time) override;
+    void update() override;
     //~end game object interface
 
 private:
-    int direction_{};
-    int speed_{};
+    MoveDirection direction_ = None;
+    float speed_{};
     bool alive_{};
     GameField* gameField{};
 };

@@ -7,36 +7,48 @@
 
 #include "Source/Game.h"
 
+const float MS_PER_UPDATE = 1.f / 60.f;
+
+void handleWindowCloseEvent(RenderWindow& window)
+{
+    Event event{};
+    while (window.pollEvent(event))
+    {
+        if (event.type == Event::Closed)
+        {
+            window.close();
+        }
+    }
+}
+
 int main(int argc, char* argv[])
 {
     Game& game = Game::instance();
     game.initialize();
 
-    sf::RenderWindow window(sf::VideoMode(1000, 1000), "Tanks");
-    sf::Clock clock;
+    RenderWindow window(VideoMode(1000, 1000), "Tanks");
 
-    float deltaTime;
+    Clock clock;
+    float timeLag = 0.0f;
 
-
+    // Game loop
     while (window.isOpen())
     {
-        deltaTime = clock.restart().asSeconds();
-
-        sf::Event event{};
-        while (window.pollEvent(event))
-        {
-            if (event.type == sf::Event::Closed)
-            {
-                window.close();
-            }
-        }
+        handleWindowCloseEvent(window);
 
         game.processInput();
-        game.update(deltaTime);
 
-        window.clear(sf::Color::Black);
-        game.render(window);
-        window.display();
+        timeLag += clock.restart().asSeconds();
+
+        while (timeLag >= MS_PER_UPDATE)
+        {
+            game.update();
+            timeLag -= MS_PER_UPDATE;
+        }
+
+        game.render(window, timeLag / MS_PER_UPDATE);
+
+        clock.restart();
     }
 
     return 0;

@@ -30,18 +30,22 @@ void Game::processInput() const
     player_->processInput();
 }
 
-void Game::update(float deltaTime) const
+void Game::update() const
 {
     for (GameObject* object : objects_)
     {
-        object->update(deltaTime);
+        object->update();
     }
 }
 
-void Game::render(sf::RenderWindow& window) const
+void Game::render(RenderWindow& window, const float deltaTime) const
 {
+    window.clear(Color::Black);
+    
     for (GameObject* object : objects_)
     {
         window.draw(object->getSprite());
     }
+    
+    window.display();
 }

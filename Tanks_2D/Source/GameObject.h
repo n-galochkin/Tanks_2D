@@ -12,7 +12,7 @@ public:
     
     virtual void initialize();
     
-    virtual void update(float delta_time);
+    virtual void update();
 
     Sprite& getSprite();
 

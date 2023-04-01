@@ -21,9 +21,9 @@ public:
 
     void initialize();
 
-    void update(float deltaTime) const;
+    void update() const;
 
-    void render(sf::RenderWindow& window) const;
+    void render(sf::RenderWindow& window, const float deltaTime) const;
 
     void add_object(GameObject* object) { objects_.push_back(object); }
 

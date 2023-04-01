@@ -3,6 +3,7 @@
 
 #include <iostream>
 
+#include "MovementDefines.h"
 #include "SFML/Window/Keyboard.hpp"
 
 Player::Player()
@@ -19,27 +20,33 @@ void Player::processInput()
     {
         return;
     }
-    
-    if (Keyboard::isKeyPressed(sf::Keyboard::Up))
+
+    MoveDirection moveDirection = None;
+
+    // TODO: set only for last pressed key
+    if (Keyboard::isKeyPressed(Keyboard::Up))
     {
         std::cout << "Press Up" << std::endl;
-        tank->turn(0);
+        moveDirection = Up;
     }
-    if (Keyboard::isKeyPressed(sf::Keyboard::Right))
+    else if (Keyboard::isKeyPressed(Keyboard::Right))
     {
         std::cout << "Press Right" << std::endl;
-        tank->turn(1);
+        moveDirection = Right;
     }
-    if (Keyboard::isKeyPressed(sf::Keyboard::Down))
+    else if (Keyboard::isKeyPressed(Keyboard::Down))
     {
         std::cout << "Press Down" << std::endl;
-        tank->turn(2);
+        moveDirection = Down;
     }
-    if (Keyboard::isKeyPressed(sf::Keyboard::Left))
+    else if (Keyboard::isKeyPressed(Keyboard::Left))
     {
         std::cout << "Press Left" << std::endl;
-        tank->turn(3);
+        moveDirection = Left;
     }
+
+    tank->setMoveDirection(moveDirection);
+    
     if (Keyboard::isKeyPressed(sf::Keyboard::Space))
     {
         tank->shoot();
