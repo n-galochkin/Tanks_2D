@@ -30,7 +30,7 @@ void Tank::update()
 
 void Tank::move()
 {
-    if(direction_ == -1)
+    if(direction_ == None)
     {
         return;
     }
