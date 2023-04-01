@@ -17,7 +17,7 @@ public:
     
     ContentManager& get_content_manager() const { return *content; }
 
-    void handleInput();
+    void processInput() const;
 
     void initialize();
 

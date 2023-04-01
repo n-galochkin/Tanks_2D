@@ -1,28 +1,25 @@
 ﻿#pragma once
 #include "SFML/Graphics/Sprite.hpp"
 
+using namespace sf;
+
 class GameObject
 {
 public:
-    int x{}, y{};
-
     GameObject();
+    GameObject(int x, int y);
+    virtual ~GameObject();
     
-    GameObject(int x, int y)
-    {
-        this->x = x;
-        this->y = y;
-    }
+    virtual void initialize();
     
-    void initialize();
-    
-    void update(float delta_time);
+    virtual void update(float delta_time);
 
-    sf::Sprite& getSprite()
-    {
-        return sprite_;
-    }
+    Sprite& getSprite();
 
-protected:
-    sf::Sprite sprite_;
+    virtual void move(const Vector2f& offset);
+
+private:
+    Sprite sprite_;
+
+    Vector2f position_;
 };

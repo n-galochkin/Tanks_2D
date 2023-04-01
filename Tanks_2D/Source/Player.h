@@ -7,6 +7,9 @@ class Player
 public:
     Tank* tank{};
 
+    Player();
     Player(int x, int y) {}
-    Player() = default;
+
+    void initialize();
+    void processInput();
 };

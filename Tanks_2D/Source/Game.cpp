@@ -10,35 +10,6 @@ Game::Game()
     player_ = new Player();
 }
 
-void Game::handleInput()
-{
-    // обработка пользовательского ввода
-    // if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
-    // {
-    //     field.player.tank.turn(0); // поворот направо
-    //     field.player.tank.move(); // движение в направлении танка
-    // }
-    // if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
-    // {
-    //     field.player.tank.turn(1); // поворот направо
-    //     field.player.tank.move(); // движение в направлении танка
-    // }
-    // if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
-    // {
-    //     field.player.tank.turn(2); // поворот направо
-    //     field.player.tank.move(); // движение в направлении танка
-    // }
-    // if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
-    // {
-    //     field.player.tank.turn(3); // поворот направо
-    //     field.player.tank.move(); // движение в направлении танка
-    // }
-    // if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
-    // {
-    //     field.player.tank.shoot(); // выстрел из танка
-    // }
-}
-
 void Game::initialize()
 {
     if (content->TryLoadFiles() == false)
@@ -46,12 +17,17 @@ void Game::initialize()
         exit(1);
     }
 
-    player_->tank = new Tank(20, 20, field_);
+    player_->initialize();
 
     for (GameObject* object : objects_)
     {
         object->initialize();
     }
+}
+
+void Game::processInput() const
+{
+    player_->processInput();
 }
 
 void Game::update(float deltaTime) const
