@@ -1,38 +1,32 @@
-
 #include <iostream>
 
 #include "libs/include/SFML/Graphics/RenderWindow.hpp"
 #include "libs/include/SFML/Window/VideoMode.hpp"
-#include "SFML/Graphics/Sprite.hpp"
 #include "SFML/Graphics/Texture.hpp"
 #include "SFML/Window/Event.hpp"
-#include "Source/ContentManager.h"
+
 #include "Source/Game.h"
 
 int main(int argc, char* argv[])
 {
-    Game game;
-    
-    ContentManager contentManager;
-    if(contentManager.TryLoadFiles() == false)
-    {
-        return 1;
-    }
-    
-    sf::RenderWindow window(sf::VideoMode(800, 600), "Tanks");
+    Game& game = Game::instance();
+    game.init();
+
+    sf::RenderWindow window(sf::VideoMode(1920, 1080), "Tanks");
     sf::Clock clock;
-    
+
     float deltaTime;
-    
-    
-    sf::Sprite tank1(contentManager.T_LightTank);
-    
-    while (window.isOpen()) {
+
+
+    while (window.isOpen())
+    {
         deltaTime = clock.restart().asSeconds();
 
         sf::Event event{};
-        while (window.pollEvent(event)) {
-            if (event.type == sf::Event::Closed) {
+        while (window.pollEvent(event))
+        {
+            if (event.type == sf::Event::Closed)
+            {
                 window.close();
             }
         }
@@ -40,8 +34,7 @@ int main(int argc, char* argv[])
         game.handleInput();
         game.update(deltaTime);
 
-        window.clear(sf::Color::Black);        
-        window.draw(tank1);
+        window.clear(sf::Color::Black);
         game.render(window);
         window.display();
     }

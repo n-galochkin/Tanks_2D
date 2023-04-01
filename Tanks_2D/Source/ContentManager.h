@@ -5,6 +5,8 @@
 class ContentManager
 {
 public:
+    ContentManager() = default;
+    
     sf::Texture T_LightTank;
 
     bool TryLoadFiles();

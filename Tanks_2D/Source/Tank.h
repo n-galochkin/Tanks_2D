@@ -1,8 +1,11 @@
 ﻿#pragma once
+#include "GameObject.h"
+#include "SFML/Audio/AlResource.hpp"
+#include "SFML/Graphics/Sprite.hpp"
 
 class GameField;
 
-class Tank
+class Tank : public GameObject
 {
 public:
     Tank(int x, int y, GameField* gameField);
@@ -14,9 +17,11 @@ public:
     void update(float delta_time);
 
 private:
-    int x, y;
     int direction{};
     int speed{};
     bool alive{};
     GameField* gameField{};
+
+public:
+    sf::Sprite sprite;
 };

@@ -2,17 +2,20 @@
 
 #include "GameField.h"
 #include "Bullet.h"
+#include "Game.h"
 
-Tank::Tank(int x, int y, GameField* gameField): gameField(gameField)
+Tank::Tank(int x, int y, GameField* gameField): GameObject(), gameField(gameField)
 {
     this->x = x;
     this->y = y;
     this->direction = 0;
     this->speed = 1;
     this->alive = true;
+
+    sprite.setTexture(Game::instance().get_content_manager().T_LightTank);
 }
 
-Tank::Tank(int x, int y)
+Tank::Tank(int x, int y) : GameObject()
 {
     this->x = x;
     this->y = y;    

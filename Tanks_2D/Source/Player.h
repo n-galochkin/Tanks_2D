@@ -2,9 +2,11 @@
 
 #include "Tank.h"
 
-class Player {
+class Player
+{
 public:
-    Tank tank; // танк игрока
+    Tank* tank{};
 
-    Player(int x, int y) : tank(x, y) {}
+    Player(int x, int y) {}
+    Player() = default;
 };

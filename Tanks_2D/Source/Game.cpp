@@ -1,45 +1,69 @@
 ﻿#include "Game.h"
+#include "Player.h"
 
-#include "Bullet.h"
 #include "SFML/Window/Keyboard.hpp"
+
+Game::Game()
+{
+    content = new ContentManager();
+    field = new GameField(20, 20);
+    player = new Player();
+}
 
 void Game::handleInput()
 {
     // обработка пользовательского ввода
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
-        gameField.player.tank.turn(0); // поворот направо
-        gameField.player.tank.move(); // движение в направлении танка
+    // if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+    // {
+    //     field.player.tank.turn(0); // поворот направо
+    //     field.player.tank.move(); // движение в направлении танка
+    // }
+    // if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+    // {
+    //     field.player.tank.turn(1); // поворот направо
+    //     field.player.tank.move(); // движение в направлении танка
+    // }
+    // if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+    // {
+    //     field.player.tank.turn(2); // поворот направо
+    //     field.player.tank.move(); // движение в направлении танка
+    // }
+    // if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+    // {
+    //     field.player.tank.turn(3); // поворот направо
+    //     field.player.tank.move(); // движение в направлении танка
+    // }
+    // if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
+    // {
+    //     field.player.tank.shoot(); // выстрел из танка
+    // }
+}
+
+void Game::init()
+{
+    if (content->TryLoadFiles() == false)
+    {
+        exit(1);
     }
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
-        gameField.player.tank.turn(1); // поворот направо
-        gameField.player.tank.move(); // движение в направлении танка
-    }
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
-        gameField.player.tank.turn(2); // поворот направо
-        gameField.player.tank.move(); // движение в направлении танка
-    }
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
-        gameField.player.tank.turn(3); // поворот направо
-        gameField.player.tank.move(); // движение в направлении танка
-    }
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
-        gameField.player.tank.shoot(); // выстрел из танка
+
+    player->tank = new Tank(20, 20, field);
+
+    for (GameObject* object : objects)
+    {
+        object->init();
     }
 }
 
 void Game::update(float deltaTime)
 {
-    // обновление игры
-    for (auto& tank : gameField.enemies) {
-        tank.update(deltaTime);
-    }
-    for (auto& bullet : gameField.bullets) {
-        bullet.update(deltaTime);
+    for (auto& object : objects)
+    {
+        object->update(deltaTime);
     }
 }
 
 void Game::render(sf::RenderWindow& window)
 {
-    // рендер игры
-    gameField.Render(window);
+   
+    window.draw(player->tank->sprite);
 }

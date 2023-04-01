@@ -169,6 +169,7 @@
       <LinkCompiled>true</LinkCompiled>
     </ClCompile>
     <ClCompile Include="Source\GameField.cpp" />
+    <ClCompile Include="Source\GameObject.cpp" />
     <ClCompile Include="Source\Player.cpp" />
     <ClCompile Include="Source\Tank.cpp" />
     <ClCompile Include="Tanks_2D.cpp" />
@@ -285,6 +286,7 @@
     <ClInclude Include="Source\ContentManager.h" />
     <ClInclude Include="Source\Game.h" />
     <ClInclude Include="Source\GameField.h" />
+    <ClInclude Include="Source\GameObject.h" />
     <ClInclude Include="Source\Player.h" />
     <ClInclude Include="Source\Tank.h" />
   </ItemGroup>
