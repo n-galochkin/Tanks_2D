@@ -19,22 +19,22 @@ public:
 
     void handleInput();
 
-    void init();
+    void initialize();
 
-    void update(float deltaTime);
+    void update(float deltaTime) const;
 
-    void render(sf::RenderWindow& window);
+    void render(sf::RenderWindow& window) const;
 
-    void add_object(GameObject* object) { objects.push_back(object); }
+    void add_object(GameObject* object) { objects_.push_back(object); }
 
 private:
     Game();
     
     ContentManager* content{};
 
-    GameField* field;
+    GameField* field_;
 
-    Player* player{};
+    Player* player_{};
 
-    vector<GameObject*> objects;
+    vector<GameObject*> objects_;
 };

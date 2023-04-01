@@ -7,7 +7,7 @@ GameObject::GameObject()
     Game::instance().add_object(this);
 }
 
-void GameObject::init()
+void GameObject::initialize()
 {
     
 }

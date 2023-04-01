@@ -10,9 +10,9 @@
 int main(int argc, char* argv[])
 {
     Game& game = Game::instance();
-    game.init();
+    game.initialize();
 
-    sf::RenderWindow window(sf::VideoMode(1920, 1080), "Tanks");
+    sf::RenderWindow window(sf::VideoMode(1000, 1000), "Tanks");
     sf::Clock clock;
 
     float deltaTime;

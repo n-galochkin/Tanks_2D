@@ -1,4 +1,5 @@
 ﻿#pragma once
+#include "SFML/Graphics/Sprite.hpp"
 
 class GameObject
 {
@@ -13,7 +14,15 @@ public:
         this->y = y;
     }
     
-    void init();
+    void initialize();
     
     void update(float delta_time);
+
+    sf::Sprite& getSprite()
+    {
+        return sprite_;
+    }
+
+protected:
+    sf::Sprite sprite_;
 };

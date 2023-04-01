@@ -21,7 +21,4 @@ private:
     int speed{};
     bool alive{};
     GameField* gameField{};
-
-public:
-    sf::Sprite sprite;
 };

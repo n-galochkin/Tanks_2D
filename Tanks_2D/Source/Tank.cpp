@@ -12,7 +12,8 @@ Tank::Tank(int x, int y, GameField* gameField): GameObject(), gameField(gameFiel
     this->speed = 1;
     this->alive = true;
 
-    sprite.setTexture(Game::instance().get_content_manager().T_LightTank);
+    sprite_.setTexture(Game::instance().get_content_manager().T_LightTank);
+    sprite_.setScale(0.2f, 0.2f);
 }
 
 Tank::Tank(int x, int y) : GameObject()

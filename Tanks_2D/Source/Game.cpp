@@ -6,8 +6,8 @@
 Game::Game()
 {
     content = new ContentManager();
-    field = new GameField(20, 20);
-    player = new Player();
+    field_ = new GameField(20, 20);
+    player_ = new Player();
 }
 
 void Game::handleInput()
@@ -39,31 +39,33 @@ void Game::handleInput()
     // }
 }
 
-void Game::init()
+void Game::initialize()
 {
     if (content->TryLoadFiles() == false)
     {
         exit(1);
     }
 
-    player->tank = new Tank(20, 20, field);
+    player_->tank = new Tank(20, 20, field_);
 
-    for (GameObject* object : objects)
+    for (GameObject* object : objects_)
     {
-        object->init();
+        object->initialize();
     }
 }
 
-void Game::update(float deltaTime)
+void Game::update(float deltaTime) const
 {
-    for (auto& object : objects)
+    for (GameObject* object : objects_)
     {
         object->update(deltaTime);
     }
 }
 
-void Game::render(sf::RenderWindow& window)
+void Game::render(sf::RenderWindow& window) const
 {
-   
-    window.draw(player->tank->sprite);
+    for (GameObject* object : objects_)
+    {
+        window.draw(object->getSprite());
+    }
 }
