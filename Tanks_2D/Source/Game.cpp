@@ -32,10 +32,16 @@ void Game::processInput() const
 
 void Game::update() const
 {
+    // TODO: static objects
+    // TODO: added new object after update
+    
     for (GameObject* object : objects_)
     {
         object->update();
     }
+
+    // TODO: delayed delete objects
+    // TODO: Pattern component
 }
 
 void Game::render(RenderWindow& window, const float deltaTime) const

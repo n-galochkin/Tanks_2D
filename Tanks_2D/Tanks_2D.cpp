@@ -48,8 +48,6 @@ int main(int argc, char* argv[])
         }
 
         game.render(window, timeLag / MS_PER_UPDATE);
-
-        clock.restart();
     }
 
     return 0;

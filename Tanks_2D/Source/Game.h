@@ -32,6 +32,7 @@ private:
     
     ContentManager* content{};
 
+    // TODO: world instead field
     GameField* field_;
 
     Player* player_{};
