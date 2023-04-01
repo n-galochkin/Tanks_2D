@@ -32,6 +32,7 @@ int main(int argc, char* argv[])
     float timeLag = 0.0f;
 
     // Game loop
+    // TODO: What about CS:GO2 tickrate?
     while (window.isOpen())
     {
         handleWindowCloseEvent(window);

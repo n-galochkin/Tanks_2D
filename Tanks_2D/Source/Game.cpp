@@ -41,7 +41,9 @@ void Game::update() const
 void Game::render(RenderWindow& window, const float deltaTime) const
 {
     window.clear(Color::Black);
-    
+
+    // TODO: use deltaTime for smooth extrapolation
+    // TODO: separate render and update move logic
     for (GameObject* object : objects_)
     {
         window.draw(object->getSprite());
