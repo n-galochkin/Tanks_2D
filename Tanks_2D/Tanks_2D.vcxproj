@@ -173,6 +173,7 @@
     <ClCompile Include="Source\GameObject.cpp" />
     <ClCompile Include="Source\Player.cpp" />
     <ClCompile Include="Source\Tank.cpp" />
+    <ClCompile Include="Source\Tools\Logger.cpp" />
     <ClCompile Include="Source\Tools\PerformanceMeasurer.cpp">
       <RuntimeLibrary>MultiThreadedDebugDll</RuntimeLibrary>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -366,6 +367,7 @@
     <ClInclude Include="Source\MovementDefines.h" />
     <ClInclude Include="Source\Player.h" />
     <ClInclude Include="Source\Tank.h" />
+    <ClInclude Include="Source\Tools\Logger.h" />
     <ClInclude Include="Source\Tools\PerformanceMeasurer.h" />
   </ItemGroup>
   <ItemGroup>
