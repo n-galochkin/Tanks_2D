@@ -1,53 +1,51 @@
-﻿
-#include "Player.h"
+﻿#include "Player.h"
 
 #include <iostream>
+#include <ranges>
+#include <set>
+#include <string>
 
 #include "MovementDefines.h"
 #include "SFML/Window/Keyboard.hpp"
-
-Player::Player()
-= default;
 
 void Player::initialize()
 {
     tank = new Tank(20, 20);
 }
 
-void Player::processInput()
+void Player::processInput(Keyboard::Key lastKeyPressed)
 {
-    if(tank == nullptr)
+    if (tank == nullptr)
     {
         return;
     }
 
+    for (const auto key : _moveInputBindings | std::views::keys)
+    {
+        if (Keyboard::isKeyPressed(key))
+        {
+            if (_pressedMoveKeys.contains(key) == false)
+            {
+                _pressedMoveKeys.insert(key);
+            }
+        }
+        else
+        {
+            _pressedMoveKeys.erase(key);
+        }
+    }
+
     MoveDirection moveDirection = None;
-
-    // TODO: set only for last pressed key
-    if (Keyboard::isKeyPressed(Keyboard::Up))
-    {
-        std::cout << "Press Up" << std::endl;
-        moveDirection = Up;
-    }
-    else if (Keyboard::isKeyPressed(Keyboard::Right))
-    {
-        std::cout << "Press Right" << std::endl;
-        moveDirection = Right;
-    }
-    else if (Keyboard::isKeyPressed(Keyboard::Down))
-    {
-        std::cout << "Press Down" << std::endl;
-        moveDirection = Down;
-    }
-    else if (Keyboard::isKeyPressed(Keyboard::Left))
-    {
-        std::cout << "Press Left" << std::endl;
-        moveDirection = Left;
-    }
-
-    tank->setMoveDirection(moveDirection);
     
-    if (Keyboard::isKeyPressed(sf::Keyboard::Space))
+    if (_pressedMoveKeys.empty() == false)
+    {
+        const Keyboard::Key lastKey = *(--_pressedMoveKeys.end());
+        moveDirection = _moveInputBindings[lastKey];
+    }
+    
+    tank->setMoveDirection(moveDirection);
+
+    if (Keyboard::isKeyPressed(Keyboard::Space))
     {
         tank->shoot();
     }

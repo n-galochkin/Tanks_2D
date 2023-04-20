@@ -9,18 +9,6 @@
 
 const float MS_PER_UPDATE = 1.f / 60.f;
 
-void handleWindowCloseEvent(RenderWindow& window)
-{
-    Event event{};
-    while (window.pollEvent(event))
-    {
-        if (event.type == Event::Closed)
-        {
-            window.close();
-        }
-    }
-}
-
 int main(int argc, char* argv[])
 {
     Game& game = Game::instance();
@@ -35,9 +23,7 @@ int main(int argc, char* argv[])
     // TODO: What about CS:GO2 tickrate?
     while (window.isOpen())
     {
-        handleWindowCloseEvent(window);
-
-        game.processInput();
+        game.processInput(window);
 
         timeLag += clock.restart().asSeconds();
 

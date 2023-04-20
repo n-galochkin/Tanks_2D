@@ -17,7 +17,7 @@ public:
     
     ContentManager& get_content_manager() const { return *content; }
 
-    void processInput() const;
+    void processInput(RenderWindow& window);
 
     void initialize();
 
@@ -38,4 +38,6 @@ private:
     Player* player_{};
 
     vector<GameObject*> objects_;
+    
+    Keyboard::Key _lastPressedKey = Keyboard::Unknown;
 };

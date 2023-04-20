@@ -1,5 +1,9 @@
 ﻿#include "Game.h"
+
+#include <iostream>
+
 #include "Player.h"
+#include "SFML/Window/Event.hpp"
 
 #include "SFML/Window/Keyboard.hpp"
 
@@ -25,16 +29,33 @@ void Game::initialize()
     }
 }
 
-void Game::processInput() const
+void Game::processInput(RenderWindow& window)
 {
-    player_->processInput();
+
+    Event event{};
+    while (window.pollEvent(event))
+    {
+        switch (event.type)
+        {
+        case Event::Closed:
+            window.close();
+            return;
+        case Event::KeyPressed:
+            _lastPressedKey = event.key.code;
+            break;
+        default:
+            break;
+        }
+    }
+
+    player_->processInput(_lastPressedKey);
 }
 
 void Game::update() const
 {
     // TODO: static objects
     // TODO: added new object after update
-    
+
     for (GameObject* object : objects_)
     {
         object->update();
@@ -54,6 +75,6 @@ void Game::render(RenderWindow& window, const float deltaTime) const
     {
         window.draw(object->getSprite());
     }
-    
+
     window.display();
 }

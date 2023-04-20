@@ -45,7 +45,7 @@ void Tank::move()
     default: ;
     }
 
-    std::cout << "Tank move: (" << offset.x << ", " << offset.y << ")" << std::endl;
+    //std::cout << "Tank move: (" << offset.x << ", " << offset.y << ")" << std::endl;
     
     GameObject::move(offset);
 }
@@ -69,5 +69,5 @@ void Tank::shoot()
     }
     
     Bullet bullet(bullet_x, bullet_y, direction_);
-    gameField->bullets.push_back(bullet);
+    //gameField->bullets.push_back(bullet);
 }

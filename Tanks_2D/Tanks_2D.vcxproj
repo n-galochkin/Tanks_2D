@@ -63,6 +63,7 @@
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <AdditionalIncludeDirectories>$(ProjectDir)libs\include</AdditionalIncludeDirectories>
       <AdditionalModuleDependencies>$(ProjectDir)libs\lib</AdditionalModuleDependencies>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
