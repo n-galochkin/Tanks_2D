@@ -1,5 +1,6 @@
 ﻿#include "Game.h"
 
+#include <chrono>
 #include <iostream>
 
 #include "Player.h"
@@ -9,14 +10,15 @@
 
 Game::Game()
 {
-    content = new ContentManager();
+    content_ = new ContentManager();
+    performance_measurer_ = new PerformanceMeasurer();
     field_ = new GameField(20, 20);
     player_ = new Player();
 }
 
 void Game::initialize()
 {
-    if (content->TryLoadFiles() == false)
+    if (content_->TryLoadFiles() == false)
     {
         exit(1);
     }
@@ -31,7 +33,6 @@ void Game::initialize()
 
 void Game::processInput(RenderWindow& window)
 {
-
     Event event{};
     while (window.pollEvent(event))
     {
@@ -53,6 +54,9 @@ void Game::processInput(RenderWindow& window)
 
 void Game::update() const
 {
+    performance_measurer_->start_measuring("Update");
+    //--------------------------------------------------------------------------------
+
     // TODO: static objects
     // TODO: added new object after update
 
@@ -63,10 +67,16 @@ void Game::update() const
 
     // TODO: delayed delete objects
     // TODO: Pattern component
+
+    //--------------------------------------------------------------------------------
+    performance_measurer_->end_measuring("Update");
 }
 
 void Game::render(RenderWindow& window, const float deltaTime) const
 {
+    performance_measurer_->start_measuring("Render");
+    //--------------------------------------------------------------------------------
+
     window.clear(Color::Black);
 
     // TODO: use deltaTime for smooth extrapolation
@@ -77,4 +87,7 @@ void Game::render(RenderWindow& window, const float deltaTime) const
     }
 
     window.display();
+
+    //--------------------------------------------------------------------------------        
+    performance_measurer_->end_measuring("Render");
 }

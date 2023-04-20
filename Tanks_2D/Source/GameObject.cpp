@@ -39,5 +39,5 @@ void GameObject::move(const Vector2f& offset)
     
     sprite_.setPosition(position_);
     
-    std::cout << "Object sprite new position: (" << position_.x << ", " << position_.y << ")" << std::endl;
+    //std::cout << "Object sprite new position: (" << position_.x << ", " << position_.y << ")" << std::endl;
 }

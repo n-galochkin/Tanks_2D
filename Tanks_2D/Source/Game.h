@@ -4,6 +4,7 @@
 #include "GameField.h"
 #include "GameObject.h"
 #include "SFML/Graphics/RenderWindow.hpp"
+#include "Tools/PerformanceMeasurer.h"
 
 class Game
 {
@@ -15,7 +16,7 @@ public:
         return *instance;
     }
     
-    ContentManager& get_content_manager() const { return *content; }
+    ContentManager& get_content_manager() const { return *content_; }
 
     void processInput(RenderWindow& window);
 
@@ -30,7 +31,9 @@ public:
 private:
     Game();
     
-    ContentManager* content{};
+    ContentManager* content_{};
+
+    PerformanceMeasurer* performance_measurer_;
 
     // TODO: world instead field
     GameField* field_;

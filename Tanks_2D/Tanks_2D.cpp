@@ -1,8 +1,6 @@
-#include <iostream>
 
 #include "libs/include/SFML/Graphics/RenderWindow.hpp"
 #include "libs/include/SFML/Window/VideoMode.hpp"
-#include "SFML/Graphics/Texture.hpp"
 #include "SFML/Window/Event.hpp"
 
 #include "Source/Game.h"
@@ -27,6 +25,10 @@ int main(int argc, char* argv[])
 
         timeLag += clock.restart().asSeconds();
 
+        // Fixed time for update game logic.
+        // If render time is too long, we got timeLag > MS_PER_UPDATE
+        // and we can update game logic several times in one frame, to catch up with real time.
+        // But we must control that game update time is less then MS_PER_UPDATE.
         while (timeLag >= MS_PER_UPDATE)
         {
             game.update();
